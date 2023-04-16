@@ -1,0 +1,22 @@
+<p-menubar class="block mb-3">
+  <ng-template pTemplate="start">
+    <img
+      src="https://primefaces.org/cdn/primeng/images/primeng.svg"
+      height="40"
+      class="mr-2"
+    />
+  </ng-template>
+  <ng-template pTemplate="end">
+    <input type="text" pInputText placeholder="Buscar" />
+    <p-button
+      styleClass="p-button-primary"
+      label="Registrarse"
+      class="mx-2"
+    ></p-button>
+    <p-button styleClass="p-button-primary" label="Iniciar Sesion"></p-button>
+  </ng-template>
+</p-menubar>
+
+<p-megaMenu [model]="items">
+  <ng-template pTemplate="end"> </ng-template>
+</p-megaMenu>
