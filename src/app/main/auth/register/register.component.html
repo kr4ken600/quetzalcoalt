@@ -1,0 +1,60 @@
+<div class="grid my-5 px-5">
+  <div class="col-12">
+    <div class="form-container">
+      <h1 class="text-center">Inicia Sesion</h1>
+      <div class="flex justify-content-center flex-wrap mb-5">
+        <form (submit)="register()" [formGroup]="formRegister">
+          <div class="grid mb-3">
+            <div class="col-12">
+              <input
+              formControlName="username"
+              type="text" pInputText placeholder="Username" />
+              <span *ngIf="validError('username')" class="text-warn ml-3">
+                El username es requerido.
+              </span>
+            </div>
+          </div>
+          <div class="grid mb-3">
+            <div class="col-12">
+              <input
+              formControlName="email"
+              type="email" pInputText placeholder="Correo Electronico" />
+              <span *ngIf="validError('email')" class="text-warn ml-3">
+                El correo es requerido.
+              </span>
+            </div>
+          </div>
+          <div class="grid mb-3">
+            <div class="col-12">
+              <input
+              formControlName="password"
+              type="password" pInputText placeholder="Contraseña" />
+              <span *ngIf="validError('password')" class="text-warn ml-3">
+                La contraseña es requeirda.
+              </span>
+            </div>
+          </div>
+          <div class="grid mb-3">
+            <div class="col-12">
+              <input
+              formControlName="password"
+              type="password" pInputText placeholder="Confirmar contraseña" />
+              <span *ngIf="validError('password')" class="text-warn ml-3">
+                La contraseña es requeirda.
+              </span>
+            </div>
+          </div>
+          <p-button type="submit" label="Iniciar"></p-button>
+        </form>
+      </div>
+      <div class="grid">
+        <div class="col-12 text-center">
+          <span>
+            ¿Ya tienes una cuenta?
+          </span>
+          <a routerLink="/index/login">Inicia Sesion</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

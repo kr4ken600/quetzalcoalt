@@ -13,7 +13,12 @@ registerLocaleData(localeEsMx);
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    SharedModule,
+  ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent],
 })

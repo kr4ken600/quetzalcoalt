@@ -1,0 +1,22 @@
+a{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.5s;
+}
+
+a:hover{
+  color: #8fa0e2;
+}
+
+.form-container{
+  padding: 0.5rem;
+  background: #161d21;
+  color: rgba(255, 255, 255, 0.87);
+  border: 2px solid #263238;
+  border-radius: 6px;
+}
+
+.text-warn{
+  color: #cc5252;
+}

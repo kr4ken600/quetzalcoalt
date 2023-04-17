@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MegaMenuItem } from 'primeng/api';
+import { MegaMenuItem, MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-menu',
@@ -8,13 +8,28 @@ import { MegaMenuItem } from 'primeng/api';
 })
 export class MenuComponent implements OnInit{
 
-  items!: MegaMenuItem[];
+  itemMenu!: MenuItem[];
+  itemsSub!: MegaMenuItem[];
 
   constructor() {
     
   }
   ngOnInit(): void {
-    this.items = [
+
+    this.itemMenu = [
+      {
+        label: 'Inicio',
+        icon: 'pi pi-fw pi-home',
+        routerLink: '/'
+      },
+      {
+        label: 'Nosotros',
+        icon: 'pi pi-fw pi-info-circle',
+        routerLink: '/index/nosotros'
+      }
+    ]
+
+    this.itemsSub = [
       {
         label: 'Refacciones',
         icon: 'pi pi-fw pi-file'
