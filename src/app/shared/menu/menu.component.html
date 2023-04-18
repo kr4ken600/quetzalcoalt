@@ -8,14 +8,10 @@
   </ng-template>
   <ng-template pTemplate="end">
     <input type="text" pInputText placeholder="Buscar" />
-    <p-button routerLink="/index/register"
-      styleClass="p-button-primary"
-      label="Registrarse"
-      class="mx-2"
-    ></p-button>
-    <p-button routerLink="/index/login" styleClass="p-button-primary" label="Iniciar Sesion"></p-button>
+    <app-btn-auth *ngIf="username"></app-btn-auth>
+    <p-menu #menu [model]="itemCuenta" [popup]="true"></p-menu>
+    <button pButton *ngIf="!username" (click)="menu.toggle($event)" label="Cuenta" class="ml-3 p-button-outlined p-button-secondary" icon="pi pi-fw pi-user"></button>
   </ng-template>
 </p-menubar>
 
-<p-megaMenu [model]="itemsSub">
-</p-megaMenu>
+<p-megaMenu [model]="itemsSub"> </p-megaMenu>

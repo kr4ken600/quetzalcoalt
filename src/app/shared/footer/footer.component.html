@@ -1,11 +1,20 @@
 <footer>
   <div class="grid">
     <div class="col-12 md:col-8 lg:col-8 px-5">
-      <h3>UNETE A NOSOTROS</h3>
-      <p>
-        Registrate o inicia sesion para mantenerte al margen de nuestras
-        promociones
-      </p>
+      <div class="grid">
+        <div class="col-12">
+          <h3>UNETE A NOSOTROS</h3>
+          <p>
+            Registrate o inicia sesion para mantenerte al margen de nuestras
+            promociones
+          </p>
+        </div>
+        <div class="col-12">
+          <div class="flex justify-content-center flex-wrap">
+            <app-btn-auth *ngIf="username.length === 0"></app-btn-auth>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-12 md:col-4 lg:col-4">
       <div class="flex justify-content-center flex-wrap">
@@ -26,23 +35,6 @@
             </a>
           </li>
         </ul>
-      </div>
-      <div class="grid">
-        <div class="col-12">
-          <div class="flex justify-content-center flex-wrap">
-            <p-button
-              routerLink="/index/register"
-              styleClass="p-button-primary"
-              label="Registrarse"
-              class="mx-2"
-            ></p-button>
-            <p-button
-              routerLink="/index/login"
-              styleClass="p-button-primary"
-              label="Iniciar Sesion"
-            ></p-button>
-          </div>
-        </div>
       </div>
     </div>
   </div>

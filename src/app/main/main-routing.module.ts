@@ -4,6 +4,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { UserActiveGuard } from '../guards/user-active.guard';
 
 const routes: Routes = [
   {
@@ -20,10 +21,14 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        canActivate: [UserActiveGuard],
+        canLoad: [UserActiveGuard]
       },
       {
         path: 'register',
         component: RegisterComponent,
+        canActivate: [UserActiveGuard],
+        canLoad: [UserActiveGuard]
       },
       {
         path: '**',

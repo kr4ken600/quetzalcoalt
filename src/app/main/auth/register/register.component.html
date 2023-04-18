@@ -1,7 +1,8 @@
 <div class="grid my-5 px-5">
-  <div class="col-12">
+  <div class="col-12 flex justify-content-center flex-wrap">
     <div class="form-container">
-      <h1 class="text-center">Inicia Sesion</h1>
+      <h1 class="text-center">Registrate</h1>
+      <p-messages *ngIf="isError" [(value)]="msgErrors" [enableService]="false"></p-messages>
       <div class="flex justify-content-center flex-wrap mb-5">
         <form (submit)="register()" [formGroup]="formRegister">
           <div class="grid mb-3">
@@ -44,7 +45,7 @@
               </span>
             </div>
           </div>
-          <p-button type="submit" label="Iniciar"></p-button>
+          <p-button type="submit" label="Registrarse"></p-button>
         </form>
       </div>
       <div class="grid">

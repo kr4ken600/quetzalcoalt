@@ -1,0 +1,11 @@
+<div class="grid my-5 px-5">
+  <div class="col-12">
+    <h1>Bienvenido {{ username }}</h1>
+  </div>
+  <div class="col-12 md:col-4 lg:col-4 xl:col-2">
+    <p-tieredMenu [model]="items"></p-tieredMenu>
+  </div>
+  <div class="col-12 md:col-8 lg:col-8 xl:col-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -8,6 +8,10 @@ import { ImageModule } from 'primeng/image';
 import { CardModule } from 'primeng/card';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CheckboxModule } from 'primeng/checkbox';
+import { MessagesModule } from 'primeng/messages';
+import { MenuModule } from 'primeng/menu';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
   exports: [
@@ -19,7 +23,11 @@ import { CheckboxModule } from 'primeng/checkbox';
     ImageModule,
     CardModule,
     FieldsetModule,
-    CheckboxModule
+    CheckboxModule,
+    MessagesModule,
+    MenuModule,
+    TieredMenuModule,
+    DynamicDialogModule
   ],
 })
 export class PrimeNgModule {}

@@ -1,0 +1,66 @@
+<div class="grid">
+  <div class="col-12">
+    <p-fieldset legend="Tus Direcciones" [toggleable]="true">
+      <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6">
+          <p-card styleClass="mb-3" header="Agregar Direccion">
+            <div class="flex justify-content-center flex-wrap">
+              <button
+                pButton
+                icon="pi pi-plus"
+                class="p-button-outlined p-button-secondary"
+                (click)="showDire()"
+              ></button>
+            </div>
+            <p-footer></p-footer>
+          </p-card>
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-6">
+          <p-card styleClass="mb-3" header="Nombre" subheader="Direccion">
+            <p class="m-0">Datos</p>
+            <p-footer>
+              <a href="#">Eliminar</a>
+            </p-footer>
+          </p-card>
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-6">
+          <p-card styleClass="mb-3" header="Nombre" subheader="Direccion">
+            <p class="m-0">Datos</p>
+            <p-footer>
+              <a href="#">Eliminar</a>
+            </p-footer>
+          </p-card>
+        </div>
+      </div>
+    </p-fieldset>
+  </div>
+  <div class="col-12">
+    <p-fieldset legend="Tus Tarjetas" [toggleable]="true">
+      <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6">
+          <p-card styleClass="mb-3" header="Agregar Tarjeta">
+            <div class="flex justify-content-center flex-wrap">
+              <button
+                pButton
+                icon="pi pi-plus"
+                class="p-button-outlined p-button-secondary"
+              ></button>
+            </div>
+          </p-card>
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-6">
+          <p-card styleClass="mb-3" header="Tipo">
+            <p class="m-0">Tarjeta de débito con terminación ***<b>9898</b></p>
+            <p-footer>
+              <a href="#">Eliminar</a>
+            </p-footer>
+          </p-card>
+        </div>
+      </div>
+    </p-fieldset>
+  </div>
+  <div class="col-12"></div>
+</div>

@@ -1,0 +1,47 @@
+<form [formGroup]="direccion" autocomplete="off">
+  <!-- <input
+    type="text"
+    pInputText
+    formControlName="nombre"
+    placeholder="Nombre de quien recibe"
+  /> -->
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="username">Nombre</label>
+    <input
+      pInputText
+      id="username"
+      formControlName="nombre"
+      placeholder="Nombre de quien recibe"
+    />
+  </div>
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="direccion">Direccion</label>
+    <input
+      pInputText
+      id="direccion"
+      formControlName="direccion"
+      placeholder="Direccion"
+    />
+  </div>
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="codigo">Codigo Postal</label>
+    <input
+      pInputText
+      type="number"
+      id="codigo"
+      formControlName="codigo"
+      placeholder="Codigo Postal"
+    />
+  </div>
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="numero">Numero Telefonico</label>
+    <input
+      pInputText
+      type="tel"
+      id="numero"
+      formControlName="numero"
+      placeholder="Numero Telefonico"
+    />
+  </div>
+  <button pButton class="p-button-outlined p-button-primary" label="Crear" (click)="create()"></button>
+</form>

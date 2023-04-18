@@ -1,7 +1,8 @@
 <div class="grid my-5 px-5">
-  <div class="col-12">
+  <div class="col-12 flex justify-content-center flex-wrap">
     <div class="form-container">
       <h1 class="text-center">Inicia Sesion</h1>
+      <p-messages *ngIf="isError" [(value)]="msgErrors" [enableService]="false"></p-messages>
       <div class="flex justify-content-center flex-wrap mb-5">
         <form (submit)="login()" [formGroup]="formLogin">
           <div class="grid mb-3">
@@ -10,7 +11,7 @@
               formControlName="email"
               type="email" pInputText placeholder="Correo Electronico" />
               <span *ngIf="validError('email')" class="text-warn ml-3">
-                El correo es requeirdo.
+                El correo es requerido.
               </span>
             </div>
 
@@ -21,13 +22,13 @@
               formControlName="password"
               type="password" pInputText placeholder="Contraseña" />
               <span *ngIf="validError('password')" class="text-warn ml-3">
-                La contraseña es requeirda.
+                La contraseña es requerida.
               </span>
             </div>
           </div>
           <div class="grid mb-3">
             <div class="col-12">
-              <p-checkbox formControlName="mSesion" value="1" inputId="ms" styleClass="mr-2"></p-checkbox>
+              <p-checkbox formControlName="mSesion" [value]="true" inputId="ms" styleClass="mr-2"></p-checkbox>
               <label for="ms">Mantener sesion</label>
             </div>
           </div>
