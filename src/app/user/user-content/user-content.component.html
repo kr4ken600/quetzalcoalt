@@ -1,61 +1,100 @@
+
+<p-toast></p-toast>
 <div class="grid">
   <div class="col-12">
     <p-fieldset legend="Tus Direcciones" [toggleable]="true">
       <div class="grid">
-        <div class="col-12 md:col-6 lg:col-6">
+        <div class="col-12 md:col-12 lg:col-12">
           <p-card styleClass="mb-3" header="Agregar Direccion">
-            <div class="flex justify-content-center flex-wrap">
-              <button
-                pButton
-                icon="pi pi-plus"
-                class="p-button-outlined p-button-secondary"
-                (click)="showDire()"
-              ></button>
+            <div class="">
+              <p-accordion>
+                <p-accordionTab>
+                  <ng-template pTemplate="header">
+                    <span>Nueva Dirección</span>
+                    <i class="pi pi-map ml-2"></i>
+                  </ng-template>
+                  <app-direccion-form
+                    (crear)="crearDireccion($event)"
+                  ></app-direccion-form>
+                </p-accordionTab>
+              </p-accordion>
             </div>
             <p-footer></p-footer>
           </p-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-6">
-          <p-card styleClass="mb-3" header="Nombre" subheader="Direccion">
-            <p class="m-0">Datos</p>
-            <p-footer>
-              <a href="#">Eliminar</a>
-            </p-footer>
-          </p-card>
+        <div
+          *ngIf="direcciones.length === 0"
+          class="col-12 flex justify-content-center flex-wrap"
+        >
+          <small>Sin Direcciones Disponibles</small>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-6">
-          <p-card styleClass="mb-3" header="Nombre" subheader="Direccion">
-            <p class="m-0">Datos</p>
+        <div *ngFor="let dir of direcciones" class="col-12 md:col-6 lg:col-6">
+          <p-card
+            styleClass="mb-3"
+            [header]="dir.nombre"
+            subheader="Propietario"
+          >
+            <p class="m-0">{{ dir.direccion }}</p>
+            <p class="m-0">{{ dir.codigo }}</p>
+            <p class="m-0">Numero telefonico: {{ dir.numero }}</p>
             <p-footer>
-              <a href="#">Eliminar</a>
+              <p-button
+                label="Eliminar"
+                (onClick)="eliminarDireccion(dir._id!)"
+                styleClass="p-button-danger p-button-text"
+              ></p-button>
             </p-footer>
           </p-card>
         </div>
       </div>
     </p-fieldset>
   </div>
+
   <div class="col-12">
     <p-fieldset legend="Tus Tarjetas" [toggleable]="true">
       <div class="grid">
-        <div class="col-12 md:col-6 lg:col-6">
+        <div class="col-12">
           <p-card styleClass="mb-3" header="Agregar Tarjeta">
-            <div class="flex justify-content-center flex-wrap">
-              <button
-                pButton
-                icon="pi pi-plus"
-                class="p-button-outlined p-button-secondary"
-              ></button>
-            </div>
+            <p-accordion>
+              <p-accordionTab>
+                <ng-template pTemplate="header">
+                  <span>Nueva Tarjeta</span>
+                  <i class="pi pi-credit-card
+                  ml-2"></i>
+                </ng-template>
+                
+
+                <app-form-tarjeta
+                  (crear)="crearTarjeta($event)"
+                ></app-form-tarjeta>
+              </p-accordionTab>
+            </p-accordion>
+            <p-footer></p-footer>
           </p-card>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-6">
-          <p-card styleClass="mb-3" header="Tipo">
-            <p class="m-0">Tarjeta de débito con terminación ***<b>9898</b></p>
+        <div
+          *ngIf="tarjetas.length === 0"
+          class="col-12 flex justify-content-center flex-wrap"
+        >
+          <small>Sin Tarjetas Disponibles</small>
+        </div>
+
+        <div *ngFor="let tarjeta of tarjetas" class="col-12 md:col-6 lg:col-6">
+          <p-card styleClass="mb-3" [header]="tarjeta.nombre">
+            <p class="m-0">
+              Tarjeta de débito con terminación ***<b>
+                {{ tarjeta.numeroT | numTarjeta }}
+              </b>
+            </p>
             <p-footer>
-              <a href="#">Eliminar</a>
+              <p-button
+                label="Eliminar"
+                styleClass="p-button-danger p-button-text"
+                (onClick)="eliminarTarjeta(tarjeta._id!)"
+              ></p-button>
             </p-footer>
           </p-card>
         </div>

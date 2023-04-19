@@ -11,3 +11,7 @@ html, body{
 .contenido {
   min-height: 100%;
 }
+
+.text-warn{
+  color: #cc5252;
+}

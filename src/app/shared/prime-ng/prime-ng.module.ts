@@ -11,7 +11,10 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MessagesModule } from 'primeng/messages';
 import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AccordionModule } from 'primeng/accordion';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   exports: [
@@ -27,7 +30,10 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     MessagesModule,
     MenuModule,
     TieredMenuModule,
-    DynamicDialogModule
+    AccordionModule,
+    InputNumberModule,
+    InputMaskModule,
+    ToastModule
   ],
 })
 export class PrimeNgModule {}

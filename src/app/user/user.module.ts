@@ -10,6 +10,8 @@ import { ComprasComponent } from './compras/compras.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { ModalDireccionComponent } from './components/modal-direccion/modal-direccion.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormTarjetaComponent } from './components/form-tarjeta/form-tarjeta.component';
+import { NumTarjetaPipe } from './pipes/num-tarjeta.pipe';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CarritoComponent,
     ComprasComponent,
     ConfiguracionComponent,
-    ModalDireccionComponent
+    ModalDireccionComponent,
+    FormTarjetaComponent,
+    NumTarjetaPipe
   ],
   imports: [
     CommonModule,

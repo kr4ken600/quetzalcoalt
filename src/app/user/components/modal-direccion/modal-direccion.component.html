@@ -1,10 +1,4 @@
 <form [formGroup]="direccion" autocomplete="off">
-  <!-- <input
-    type="text"
-    pInputText
-    formControlName="nombre"
-    placeholder="Nombre de quien recibe"
-  /> -->
   <div class="flex flex-column gap-2 mb-3">
     <label htmlFor="username">Nombre</label>
     <input
@@ -13,6 +7,7 @@
       formControlName="nombre"
       placeholder="Nombre de quien recibe"
     />
+    <small *ngIf="getErrors('nombre')" class="text-warn">El campo nombre es obligatorio.</small>
   </div>
   <div class="flex flex-column gap-2 mb-3">
     <label htmlFor="direccion">Direccion</label>
@@ -22,26 +17,27 @@
       formControlName="direccion"
       placeholder="Direccion"
     />
+    <small *ngIf="getErrors('direccion')" class="text-warn">El campo direccion es obligatorio.</small>
   </div>
   <div class="flex flex-column gap-2 mb-3">
     <label htmlFor="codigo">Codigo Postal</label>
-    <input
-      pInputText
-      type="number"
-      id="codigo"
+    <p-inputMask
+      inputId="codigo"
       formControlName="codigo"
-      placeholder="Codigo Postal"
-    />
+      mask="99999"
+      placeholder="12345"
+    ></p-inputMask>
+    <small *ngIf="getErrors('codigo')" class="text-warn">El campo codigo es obligatorio y debe contener 5 digitos.</small>
   </div>
   <div class="flex flex-column gap-2 mb-3">
     <label htmlFor="numero">Numero Telefonico</label>
-    <input
-      pInputText
-      type="tel"
-      id="numero"
+    <p-inputMask
+      inputId="numero"
       formControlName="numero"
-      placeholder="Numero Telefonico"
-    />
+      mask="99-99-99-99-99"
+      placeholder="55-55-55-55-55"
+    ></p-inputMask>
+    <small *ngIf="getErrors('numero')" class="text-warn">El campo numero es obligatorio y debe contener 10 digitos.</small>
   </div>
-  <button pButton class="p-button-outlined p-button-primary" label="Crear" (click)="create()"></button>
+  <button pButton class="p-button-outlined p-button-primary" label="Crear" (click)="ejecutar()"></button>
 </form>

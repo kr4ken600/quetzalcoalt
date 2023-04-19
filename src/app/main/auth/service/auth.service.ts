@@ -65,8 +65,4 @@ export class AuthService {
     localStorage.clear();
     sessionStorage.clear();
   }
-
-  test() {
-    return this.http.get(`${this.rutaBase}/test`);
-  }
 }

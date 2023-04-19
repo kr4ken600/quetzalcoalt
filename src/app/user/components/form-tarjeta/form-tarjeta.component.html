@@ -1,0 +1,50 @@
+<form [formGroup]="tarjeta" autocomplete="off">
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="numeroT">Numero de Tarjeta</label>
+    <p-inputMask
+      mask="9999-9999-9999-9999"
+      slotChar="0000-0000-0000-0000"
+      inputId="numeroT"
+      formControlName="numeroT"
+      placeholder="Numero de Tarjeta"
+    ></p-inputMask>
+    <small *ngIf="getErrors('numeroT')" class="text-warn">El campo numero de tarjeta es obligatorio.</small>
+  </div>
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="nombre">Nombre en la Tarjeta</label>
+    <input
+      pInputText
+      id="nombre"
+      formControlName="nombre"
+      placeholder="Nombre en la Tarjeta"
+    />
+    <small *ngIf="getErrors('nombre')" class="text-warn">El campo nombre de tarjeta es obligatorio.</small>
+  </div>
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="fecha">Fecha de vencimiento</label>
+    <p-inputMask
+      inputId="fecha"
+      formControlName="fecha"
+      mask="99/99"
+      placeholder="12/23"
+      slotChar="mm/yy"
+    ></p-inputMask>
+    <small *ngIf="getErrors('fecha')" class="text-warn">El campo fecha de vencimiento es obligatorio.</small>
+  </div>
+  <div class="flex flex-column gap-2 mb-3">
+    <label htmlFor="codigoS">Codigo de Seguridad</label>
+    <p-inputMask
+      inputId="codigoS"
+      formControlName="codigoS"
+      mask="999"
+      placeholder="123"
+    ></p-inputMask>
+    <small *ngIf="getErrors('codigoS')" class="text-warn">El campo codigo de seguridad es obligatorio.</small>
+  </div>
+  <button
+    pButton
+    class="p-button-outlined p-button-primary"
+    label="Crear"
+    (click)="ejecutar()"
+  ></button>
+</form>
