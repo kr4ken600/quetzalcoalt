@@ -15,6 +15,8 @@ import { AccordionModule } from 'primeng/accordion';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ToastModule } from 'primeng/toast';
+import { TagModule } from 'primeng/tag';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   exports: [
@@ -33,7 +35,9 @@ import { ToastModule } from 'primeng/toast';
     AccordionModule,
     InputNumberModule,
     InputMaskModule,
-    ToastModule
+    ToastModule,
+    TagModule,
+    SkeletonModule
   ],
 })
 export class PrimeNgModule {}

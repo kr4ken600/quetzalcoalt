@@ -1,0 +1,59 @@
+<div class="grid my-5 px-5">
+  <div class="col-12">
+    <h1>
+      {{ principal | titlecase }}: <small>{{ categoria | titlecase }}</small>
+    </h1>
+  </div>
+  <div class="col-12 md:col-4 lg:col-4 xl:col-2">
+    <p-menu [model]="items"></p-menu>
+  </div>
+
+  <div *ngIf="isLoading" class="col-12 md:col-8 lg:col-8 xl:col-10">
+    <div class="grid px-5">
+      <div class="col-12 md:col-4">
+        <p-skeleton size="15rem"></p-skeleton>
+      </div>
+      <div class="col-12 md:col-4">
+        <p-skeleton size="15rem"></p-skeleton>
+      </div>
+      <div class="col-12 md:col-4">
+        <p-skeleton size="15rem"></p-skeleton>
+      </div>
+      <div class="col-12 md:col-4">
+        <p-skeleton size="15rem"></p-skeleton>
+      </div>
+      <div class="col-12 md:col-4">
+        <p-skeleton size="15rem"></p-skeleton>
+      </div>
+      <div class="col-12 md:col-4">
+        <p-skeleton size="15rem"></p-skeleton>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="!isLoading" class="col-12 md:col-8 lg:col-8 xl:col-10">
+    <div class="grid px-5">
+      <div
+        *ngFor="let produc of articulos"
+        class="col-12 md:col-6 lg:col-4 px-5"
+      >
+        <p-card subheader="{{ produc.precio | currency : 'MXN' }}">
+          <ng-template pTemplate="header">
+            <img
+              alt="Card"
+              src="assets/productos/{{ produc.categoria }}/{{ produc.img }}.png"
+            />
+            <h5 class="px-3">{{ produc.marca | descripcion }}</h5>
+          </ng-template>
+          <p-button
+            label="Ver mas"
+            icon="pi pi-eye"
+            styleClass="p-button-success p-button-text"
+            (onClick)="verMas(produc._id!)"
+          ></p-button>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

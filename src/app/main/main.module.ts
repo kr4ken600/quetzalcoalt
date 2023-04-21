@@ -8,20 +8,27 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { DescripcionPipe } from './pipes/descripcion.pipe';
+import { ProductoComponent } from './productos/pages/producto/producto.component';
+import { UnicoComponent } from './productos/pages/unico/unico.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     PrincipalComponent,
     NosotrosComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DescripcionPipe,
+    ProductoComponent,
+    UnicoComponent
   ],
   imports: [
     CommonModule,
     PrimeNgModule,
     MainRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class MainModule { }

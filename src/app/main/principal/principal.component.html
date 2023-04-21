@@ -1,92 +1,37 @@
 <div class="grid my-5 px-5">
   <div class="col-12 md:col-12 lg:col-12">
-    <h1>Carrusel</h1>
-    <!-- TODO: Aqui va el carrusel -->
-    <!-- <p-carousel
-      [value]="products"
-      [numVisible]="3"
-      [numScroll]="3"
-      [circular]="true"
-      [responsiveOptions]="responsiveOptions"
-      autoPlayInterval="3000"
-    >
-      <ng-template let-product pTemplate="item">
-        <div
-          class="border-1 surface-border border-round m-2 text-center py-5 px-3"
-        >
-          <div class="mb-3">
-            <img
-              src="https://primefaces.org/cdn/primeng/images/demo/product/{{
-                product.image
-              }}"
-              [alt]="product.name"
-              class="w-6 shadow-2"
-            />
-          </div>
-          <div>
-            <h4 class="mb-1">{{ product.name }}</h4>
-            <h6 class="mt-0 mb-3">{{ "$" + product.price }}</h6>
-            <p-tag
-              [value]="product.inventoryStatus"
-              [severity]="getSeverity(product.inventoryStatus)"
-            ></p-tag>
-            <div class="car-buttons mt-5">
-              <p-button
-                type="button"
-                styleClass="p-button p-button-rounded mr-2"
-                icon="pi pi-search"
-              ></p-button>
-              <p-button
-                type="button"
-                styleClass="p-button-success p-button-rounded mr-2"
-                icon="pi pi-star-fill"
-              ></p-button>
+    <div class="card">
+      <p-carousel
+        [value]="imgCarousel"
+        [numVisible]="1"
+        [numScroll]="1"
+        [circular]="true"
+        [responsiveOptions]="responsiveOptions"
+        [autoplayInterval]="3000"
+      >
+        <ng-template let-carousel pTemplate="item">
+          <div class="m-2 text-center py-5 px-3">
+            <div class="mb-3">
+              <img [src]="carousel" [alt]="carousel" class="w-6 shadow-2" />
             </div>
           </div>
-        </div>
-      </ng-template>
-    </p-carousel> -->
+        </ng-template>
+      </p-carousel>
+    </div>
   </div>
-  <div class="col-12 md:col-4 lg:col-4 px-5">
+
+  <div *ngFor="let produc of productos" class="col-12 md:col-6 lg:col-4 px-5">
     <p-card
-      header="Nombre Producto "
-      subheader="$Precio"
-      
+      [header]="produc.marca"
+      subheader="{{ produc.precio | currency : 'MXN' }}"
     >
       <ng-template pTemplate="header">
         <img
           alt="Card"
-          src="https://primefaces.org/cdn/primeng/images/usercard.png"
+          src="assets/productos/{{ produc.categoria }}/{{ produc.img }}.png"
         />
       </ng-template>
-    </p-card>
-  </div>
-  <div class="col-12 md:col-4 lg:col-4 px-5">
-    <p-card
-      header="Nombre Producto "
-      subheader="$Precio"
-      
-    >
-      <ng-template pTemplate="header">
-        <img
-          alt="Card"
-          src="https://primefaces.org/cdn/primeng/images/usercard.png"
-        />
-      </ng-template>
-    </p-card>
-  </div>
-  <div class="col-12 md:col-4 lg:col-4 px-5">
-    <p-card
-      header="Nombre Producto "
-      subheader="$Precio"
-      
-    >
-      <ng-template pTemplate="header">
-        <img
-          alt="Card"
-          src="https://primefaces.org/cdn/primeng/images/usercard.png"
-        />
-      </ng-template>
+      <p>{{ produc.descripcion }}</p>
     </p-card>
   </div>
 </div>

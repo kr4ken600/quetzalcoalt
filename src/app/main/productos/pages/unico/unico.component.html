@@ -1,0 +1,60 @@
+<div *ngIf="articulo">
+  <div class="grid my-5 px-5">
+    <div class="col-12 md:col-6 lg:col-6 xl:col-4">
+      <img
+        width="100%"
+        src="assets/productos/{{ articulo.categoria }}/{{ articulo.img }}.png"
+        alt="..."
+      />
+    </div>
+
+    <div class="col-12 md:col-6 lg:col-6 xl:col-8 px-5">
+      <h1>{{ articulo.marca }}</h1>
+      <h4>{{ articulo.precio | currency : "MXN" }}</h4>
+
+      <span
+        >Existencias: <small>{{ articulo.stock }} pzs</small></span
+      >
+
+      <div class="p-inputgroup mb-5" style="width: 150px">
+        <button
+          (click)="setCnt(false)"
+          class="p-button-primary p-button-outlined"
+          pButton
+          icon="pi pi-minus"
+        ></button>
+
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="campo"
+          placeholder="Cantidad"
+          disabled
+        />
+
+        <button
+          (click)="setCnt(true)"
+          class="p-button-primary p-button-outlined"
+          pButton
+          icon="pi pi-plus"
+        ></button>
+      </div>
+
+      <div class="card">
+        <div
+          class="card-container flex align-items-center justify-content-start"
+        >
+          <div class="w-15rem h-4rem mr-3">
+            <button class="p-button-success" icon="pi pi-cart-plus" pButton label="Agregar al Carrito"></button>
+          </div>
+          <div class="w-15rem h-4rem">
+            <button class="p-button-warning" icon="pi pi-money-bill" pButton label="Comprar Ahora"></button>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+      <p>{{ articulo.descripcion }}</p>
+    </div>
+  </div>
+</div>

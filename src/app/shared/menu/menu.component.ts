@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
+import { ICategoria } from 'src/app/interfaces/categoria';
 import { AuthService } from 'src/app/main/auth/service/auth.service';
+import { CategoriasService } from 'src/app/main/services/categorias.service';
 import { ChequeoService } from 'src/app/utils/chequeo.service';
 
 @Component({
@@ -12,8 +14,12 @@ import { ChequeoService } from 'src/app/utils/chequeo.service';
 })
 export class MenuComponent implements OnInit {
   itemMenu!: MenuItem[];
-  itemsSub!: MegaMenuItem[];
+  itemsSub!: MenuItem[];
   itemCuenta!: MenuModule[];
+
+  categorias: ICategoria[] = [];
+
+  consumibles: MenuItem[] = [];
 
   get username() {
     return this.checkSvc.token.length === 0 ? true : false;
@@ -22,8 +28,23 @@ export class MenuComponent implements OnInit {
   constructor(
     private checkSvc: ChequeoService,
     private authSvc: AuthService,
+    private catSvc: CategoriasService,
     private router: Router
-  ) {}
+  ) {
+    this.catSvc.getcategorias().subscribe((res: ICategoria[]) => {
+      this.categorias = res;
+      let cat1 = this.categorias.filter(
+        (val) => val.principal === 'consumibles'
+      );
+      cat1.forEach((val) => {
+        this.consumibles.push({
+          label: val.nombre,
+          icon: 'pi pi-fw pi-tags',
+          routerLink: ['/index/tienda', val.principal, val.nombre]
+        })
+      });
+    });
+  }
 
   ngOnInit(): void {
     this.itemMenu = [
@@ -41,20 +62,25 @@ export class MenuComponent implements OnInit {
 
     this.itemsSub = [
       {
+        label: 'Consumibles',
+        icon: 'pi pi-fw pi-tags',
+        items: this.consumibles,
+      },
+      {
         label: 'Refacciones',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-tags',
       },
       {
         label: 'Cascos',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-tags',
       },
       {
         label: 'Accesirios',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-tags',
       },
       {
         label: 'Llantas',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-tags',
       },
     ];
 
@@ -90,6 +116,6 @@ export class MenuComponent implements OnInit {
           this.router.navigateByUrl('/index/login');
         },
       },
-    ]
+    ];
   }
 }

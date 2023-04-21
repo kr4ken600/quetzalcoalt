@@ -5,6 +5,8 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserActiveGuard } from '../guards/user-active.guard';
+import { ProductoComponent } from './productos/pages/producto/producto.component';
+import { UnicoComponent } from './productos/pages/unico/unico.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
       {
         path: 'nosotros',
         component: NosotrosComponent,
+      },
+      {
+        path: 'tienda/:prn/:cat',
+        component: ProductoComponent,
+      },
+      {
+        path: 'producto/:id',
+        component: UnicoComponent,
       },
       {
         path: 'login',
