@@ -4,6 +4,7 @@ import { IDireccion } from 'src/app/interfaces/direccion';
 import { ITarjeta } from 'src/app/interfaces/tarjeta';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { MetodosVariosService } from 'src/app/utils/metodos-varios.service';
 
 @Component({
   selector: 'app-user-content',
@@ -19,7 +20,7 @@ export class UserContentComponent implements OnInit, OnDestroy {
   suscriptD!: Subscription;
   suscriptT!: Subscription;
 
-  constructor(private userSvc: UserService, private msgSvc: MessageService) {
+  constructor(private userSvc: UserService, private mtv: MetodosVariosService, private msgSvc: MessageService) {
     this.userSvc.getDirecciones().subscribe((res) => (this.direcciones = res));
     this.userSvc.getTarjetas().subscribe((res) => (this.tarjetas = res));
   }
@@ -41,34 +42,27 @@ export class UserContentComponent implements OnInit, OnDestroy {
 
   crearDireccion(dir: IDireccion) {
     this.userSvc.crearDireccion(dir).subscribe((res) => {
-      this.showMsg('success', 'Direccion', res);
+      this.mtv.showMsg(this.msgSvc, 'success', 'Direccion', res);
     });
   }
 
-  
   eliminarDireccion(id: string) {
     this.userSvc.deleteDireccion(id).subscribe((res) => {
-      this.showMsg('warn', 'Direccion', res);
+      this.mtv.showMsg(this.msgSvc, 'warn', 'Direccion', res);
     });
   }
 
   crearTarjeta(tar: ITarjeta) {
     this.userSvc.crearTarjeta(tar).subscribe((res) => {
-      this.showMsg('success', 'Tarjeta', res);
+      this.mtv.showMsg(this.msgSvc, 'success', 'Tarjeta', res);
     });
   }
 
   eliminarTarjeta(id: string) {
     this.userSvc.deleteTarjeta(id).subscribe((res) => {
-      this.showMsg('warn', 'Tarjeta', res);
+      this.mtv.showMsg(this.msgSvc, 'warn', 'Tarjeta', res);
     });
   }
 
-  showMsg(sev: string, sum: string, res: string) {
-    this.msgSvc.add({
-      severity: sev,
-      summary: sum,
-      detail: res,
-    });
-  }
+  
 }

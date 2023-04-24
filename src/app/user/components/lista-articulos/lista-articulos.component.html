@@ -1,0 +1,51 @@
+<div class="card">
+  <p-table [value]="articulos">
+    <ng-template pTemplate="header">
+      <tr>
+        <th></th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+        <th *ngIf="delete"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-articulo>
+      <tr>
+        <td>
+          <img
+            src="assets/productos/{{ articulo.articulo.categoria }}/{{
+              articulo.articulo.img
+            }}.png"
+            alt="articulo.articulo.img"
+            style="width: 100px"
+          />
+        </td>
+        <td><p class="link" routerLink (click)="redirect(articulo.articulo._id)">
+          {{ articulo.articulo.marca }}
+        </p></td>
+        <td>{{ articulo.articulo.precio | currency : "MXN" }}</td>
+        <td>
+          <p class="text-center" style="width: 100px">
+            {{ articulo.cantidad }}
+          </p>
+        </td>
+        <td>
+          {{ articulo.cantidad * articulo.articulo.precio | currency : "MXN" }}
+        </td>
+        <td *ngIf="delete">
+          <p-button
+            icon="pi pi-times"
+            styleClass="p-button-rounded p-button-danger p-button-text"
+            (onClick)="eliminar(articulo._id)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-end mr-5 px-2">
+        Total: {{ subtotal | currency : "MXN" }}
+      </div>
+    </ng-template>
+  </p-table>
+</div>

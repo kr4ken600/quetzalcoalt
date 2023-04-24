@@ -1,1 +1,33 @@
-<p>carrito works!</p>
+<p-toast></p-toast>
+<div class="grid px-5">
+  <div class="col-12">
+    <h1>Tu Carrito</h1>
+    <div>
+      <h3 *ngIf="articulos.length > 0">
+        Articulos: <small> {{ articulos.length }} </small>
+      </h3>
+    </div>
+    <hr />
+  </div>
+
+  <div
+    *ngIf="articulos.length === 0"
+    class="col-12 flex align-items-center justify-content-center"
+  >
+    <p>No hay productos en tu carrito.</p>
+  </div>
+
+  <div *ngIf="articulos.length > 0">
+    <div class="col-12 mb-3">
+      <app-lista-articulos
+        [articulos]="articulos"
+        (_eliminar)="eliminar($event)"
+        [delete]="true"
+      ></app-lista-articulos>
+    </div>
+
+    <div class="col-12 flex align-items-center justify-content-end">
+      <button pButton label="Realizar Compra" (click)="realizar()"></button>
+    </div>
+  </div>
+</div>

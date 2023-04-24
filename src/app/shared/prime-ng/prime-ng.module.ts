@@ -17,6 +17,9 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { ToastModule } from 'primeng/toast';
 import { TagModule } from 'primeng/tag';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   exports: [
@@ -37,7 +40,10 @@ import { SkeletonModule } from 'primeng/skeleton';
     InputMaskModule,
     ToastModule,
     TagModule,
-    SkeletonModule
+    SkeletonModule,
+    ConfirmDialogModule,
+    TableModule,
+    DropdownModule
   ],
 })
 export class PrimeNgModule {}

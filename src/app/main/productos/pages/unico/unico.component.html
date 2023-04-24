@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div *ngIf="articulo">
   <div class="grid my-5 px-5">
     <div class="col-12 md:col-6 lg:col-6 xl:col-4">
@@ -16,7 +17,7 @@
         >Existencias: <small>{{ articulo.stock }} pzs</small></span
       >
 
-      <div class="p-inputgroup mb-5" style="width: 150px">
+      <div class="p-inputgroup mt-2 mb-5" style="width: 150px">
         <button
           (click)="setCnt(false)"
           class="p-button-primary p-button-outlined"
@@ -44,11 +45,24 @@
         <div
           class="card-container flex align-items-center justify-content-start"
         >
+          <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
           <div class="w-15rem h-4rem mr-3">
-            <button class="p-button-success" icon="pi pi-cart-plus" pButton label="Agregar al Carrito"></button>
+            <button
+              class="p-button-success p-button-sm p-button-outlined"
+              icon="pi pi-cart-plus"
+              pButton
+              label="Agregar al Carrito"
+              (click)="agregar()"
+            ></button>
           </div>
           <div class="w-15rem h-4rem">
-            <button class="p-button-warning" icon="pi pi-money-bill" pButton label="Comprar Ahora"></button>
+            <button
+              class="p-button-warning p-button-sm p-button-outlined"
+              icon="pi pi-money-bill"
+              pButton
+              label="Comprar Ahora"
+              (click)="comprar()"
+            ></button>
           </div>
         </div>
       </div>

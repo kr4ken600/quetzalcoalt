@@ -15,6 +15,7 @@ export class UserService {
   private headers = new HttpHeaders().set('x-token', this.token ?? '');
   _refreshD$ = new Subject<void>();
   _refreshT$ = new Subject<void>();
+  _refreshC$ = new Subject<void>();
 
   constructor(private http: HttpClient) {}
 
@@ -81,6 +82,24 @@ export class UserService {
           this._refreshT$.next();
         }),
         map((res: any) => res.msg)
+      );
+  }
+
+  getCarrito() {
+    return this.http.get(`${this.urlBase}/car`, { headers: this.headers }).pipe(
+      map((res: any) => res.carrito),
+      catchError((err) => of(err.error.msg))
+    );
+  }
+
+  deleteCarrito(id: string) {
+    return this.http
+      .delete(`${this.urlBase}/car/${id}`, { headers: this.headers })
+      .pipe(
+        tap(() => {
+          this._refreshC$.next();
+        }),
+        map((res: any) => res)
       );
   }
 }
