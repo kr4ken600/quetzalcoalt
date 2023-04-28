@@ -1,10 +1,12 @@
 <p-toast></p-toast>
 <div class="grid px-5">
   <div class="col-12">
-    <h1>Tu Carrito</h1>
+    <h1>Tu Carrito <i class="pi pi-shopping-cart
+      ml-2" style="font-size: 2.5rem"></i>
+    </h1>
     <div>
       <h3 *ngIf="articulos.length > 0">
-        Articulos: <small> {{ articulos.length }} </small>
+        Articulos listos para comprar: <small> {{ articulos.length }} </small>
       </h3>
     </div>
     <hr />
@@ -18,11 +20,13 @@
   </div>
 
   <div *ngIf="articulos.length > 0">
-    <div class="col-12 mb-3">
+    <div class="col-12 mb-3 carrito">
       <app-lista-articulos
+        [subtotal]="subtotal"
         [articulos]="articulos"
         (_eliminar)="eliminar($event)"
         [delete]="true"
+        
       ></app-lista-articulos>
     </div>
 

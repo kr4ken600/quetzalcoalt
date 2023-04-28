@@ -20,21 +20,25 @@ export class DashboardComponent {
         label: 'Panel',
         icon: 'pi pi-fw pi-user',
         routerLink: '/dashboard/user',
+        routerLinkActiveOptions: { exact: true },
       },
       {
         label: 'Mis Compras',
         icon: 'pi pi-fw pi-gift',
         routerLink: '/dashboard/compras',
+        routerLinkActiveOptions: { exact: true },
       },
       {
         label: 'Carrito',
         icon: 'pi pi-fw pi-cart-plus',
         routerLink: '/dashboard/carrito',
+        routerLinkActiveOptions: { exact: true },
       },
       {
         label: 'Configuración',
         icon: 'pi pi-fw pi-wrench',
         routerLink: '/dashboard/configuracion',
+        routerLinkActiveOptions: { exact: true },
       },
       {
         separator: true,
@@ -47,7 +51,7 @@ export class DashboardComponent {
           this.router.navigateByUrl('/index/login');
         },
       },
-    ]
+    ];
   }
 
   logOut() {

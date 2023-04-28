@@ -20,6 +20,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   exports: [
@@ -43,7 +44,8 @@ import { DropdownModule } from 'primeng/dropdown';
     SkeletonModule,
     ConfirmDialogModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    RadioButtonModule
   ],
 })
 export class PrimeNgModule {}

@@ -25,9 +25,9 @@ export class RegisterComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.formRegister = this.fb.group({
-      username: ['yona', [Validators.required, Validators.minLength(4)]],
+      username: ['test', [Validators.required, Validators.minLength(4)]],
       email: [
-        'yon@test.com',
+        'test@test.com',
         [Validators.required, Validators.pattern(this.emailPattern)],
       ],
       password: ['pass1234', [Validators.required, Validators.minLength(6)]],

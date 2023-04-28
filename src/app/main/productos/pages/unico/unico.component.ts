@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { IProducto } from 'src/app/interfaces/producto';
-import { ProductosService } from 'src/app/main/services/productos.service';
 import { ChequeoService } from 'src/app/utils/chequeo.service';
 import {
   ConfirmationService,
@@ -12,6 +11,7 @@ import {
 import { CarritoService } from 'src/app/services/carrito.service';
 import { ICarritoReq } from 'src/app/interfaces/carrito';
 import { MetodosVariosService } from 'src/app/utils/metodos-varios.service';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-unico',

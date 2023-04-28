@@ -4,8 +4,8 @@ import { MenuItem } from 'primeng/api';
 import { Subscription, filter, switchMap } from 'rxjs';
 import { ICategoria } from 'src/app/interfaces/categoria';
 import { IProducto } from 'src/app/interfaces/producto';
-import { CategoriasService } from 'src/app/main/services/categorias.service';
-import { ProductosService } from 'src/app/main/services/productos.service';
+import { CategoriasService } from 'src/app/services/categorias.service';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-producto',

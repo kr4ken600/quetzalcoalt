@@ -4,7 +4,7 @@ import { MegaMenuItem, MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { ICategoria } from 'src/app/interfaces/categoria';
 import { AuthService } from 'src/app/main/auth/service/auth.service';
-import { CategoriasService } from 'src/app/main/services/categorias.service';
+import { CategoriasService } from 'src/app/services/categorias.service';
 import { ChequeoService } from 'src/app/utils/chequeo.service';
 
 @Component({
