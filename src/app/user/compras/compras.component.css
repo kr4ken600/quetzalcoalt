@@ -1,0 +1,15 @@
+.link {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.5s;
+}
+
+.link:hover {
+  color: #8fa0e2;
+}
+
+.card{
+  width: 1415px;
+}

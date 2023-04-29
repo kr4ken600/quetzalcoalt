@@ -91,6 +91,7 @@
                 placeholder="Seleccionar tarjeta"
                 [editable]="false"
                 optionLabel="nombre"
+                (ngModelChange)="setIdT()"
               ></p-dropdown>
               <div
                 *ngIf="selectTarjeta !== undefined && mostrarOptionPago('tg')"
@@ -126,6 +127,7 @@
               placeholder="Seleccionar direccion"
               [editable]="false"
               optionLabel="nombre"
+              (onChange)="setIdD($event.value)"
             ></p-dropdown>
           </div>
           <div class="col-12">

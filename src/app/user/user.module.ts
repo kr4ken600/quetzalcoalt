@@ -11,9 +11,9 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
 import { ModalDireccionComponent } from './components/modal-direccion/modal-direccion.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormTarjetaComponent } from './components/form-tarjeta/form-tarjeta.component';
-import { NumTarjetaPipe } from './pipes/num-tarjeta.pipe';
 import { VentanaCompraComponent } from './ventana-compra/ventana-compra.component';
 import { ListaArticulosComponent } from './components/lista-articulos/lista-articulos.component';
+import { PipesModule } from './pipes/pipes.module';
 
 
 @NgModule({
@@ -25,16 +25,16 @@ import { ListaArticulosComponent } from './components/lista-articulos/lista-arti
     ConfiguracionComponent,
     ModalDireccionComponent,
     FormTarjetaComponent,
-    NumTarjetaPipe,
     VentanaCompraComponent,
-    ListaArticulosComponent
+    ListaArticulosComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     PrimeNgModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PipesModule
   ],
   entryComponents: [ModalDireccionComponent]
 })
