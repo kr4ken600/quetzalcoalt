@@ -14,6 +14,7 @@ import { FormTarjetaComponent } from './components/form-tarjeta/form-tarjeta.com
 import { VentanaCompraComponent } from './ventana-compra/ventana-compra.component';
 import { ListaArticulosComponent } from './components/lista-articulos/lista-articulos.component';
 import { PipesModule } from './pipes/pipes.module';
+import { DetalleCompraComponent } from './detalle-compra/detalle-compra.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { PipesModule } from './pipes/pipes.module';
     FormTarjetaComponent,
     VentanaCompraComponent,
     ListaArticulosComponent,
+    DetalleCompraComponent,
   ],
   imports: [
     CommonModule,

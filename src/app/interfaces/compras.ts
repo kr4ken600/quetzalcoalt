@@ -1,12 +1,17 @@
+import { IDireccion } from "./direccion";
+import { ITarjeta } from "./tarjeta";
+
 export interface ICompras {
-  compras: [
-    {
-      cantidad: number;
-      articulo: string;
-    }
-  ];
-  direccion: string;
-  tarjeta?: string;
+  compras: ICompraItem[];
+  idcarrito?: string
+}
+
+export interface ICompraItem {
+  cantidad: number;
+  articulo: string;
+  iddireccion: string;
+  idtarjeta: string | null;
+  estatus: boolean;
 }
 
 export interface IProductoRes {
@@ -26,4 +31,14 @@ export interface Articulo {
   modelo: string;
   precio: number;
   stock: number;
+}
+
+export interface IProductoDetalle {
+  _id: string;
+  articulo: string;
+  cantidad: number;
+  estatus: boolean;
+  fecha_compra: Date;
+  iddireccion: IDireccion;
+  idtarjeta: null | ITarjeta;
 }

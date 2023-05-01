@@ -26,7 +26,9 @@ export class UnicoComponent implements OnInit {
   id!: string;
   stock: number = 0;
 
-  get tocken() {
+  isLoading:boolean = false;
+
+  get token() {
     return this.checkSvc.token.length > 0 ? true : false;
   }
 
@@ -67,7 +69,7 @@ export class UnicoComponent implements OnInit {
   }
 
   agregar() {
-    if (!this.tocken) {
+    if (!this.token) {
       this.showMessage();
       return;
     }
@@ -83,15 +85,23 @@ export class UnicoComponent implements OnInit {
   }
 
   comprar() {
-    if (!this.tocken) {
+    if (!this.token) {
       this.showMessage();
       return;
     }
-    this.mtv.redirectQuery(this.router, '/dashboard/compra', {
-      list: false,
-      producto: this.id,
-      cnt: this.campo
-    });
+
+    this.mtv.setLocalS();
+
+    this.isLoading = true;
+
+    setTimeout(() => {
+      this.mtv.redirectQuery(this.router, '/dashboard/compra', {
+        list: false,
+        producto: this.id,
+        cnt: this.campo
+      });
+    }, 2000);
+
   }
 
   showMessage() {
@@ -117,5 +127,9 @@ export class UnicoComponent implements OnInit {
         }
       },
     });
+  }
+
+  existencias(){
+    return this.stock > 0;
   }
 }

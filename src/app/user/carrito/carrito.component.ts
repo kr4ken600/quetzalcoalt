@@ -20,13 +20,14 @@ export class CarritoComponent implements OnInit, OnDestroy {
   suscriptC!: Subscription;
   idcarrito!: number;
 
+  isLoading: boolean = false;
+
   constructor(
     private carritoSvc: CarritoService,
     private mtv: MetodosVariosService,
     private msgSvc: MessageService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnDestroy(): void {
     this.suscriptC.unsubscribe();
@@ -39,8 +40,7 @@ export class CarritoComponent implements OnInit, OnDestroy {
         let n = art.articulo.precio * art.cantidad;
 
         this.subtotal += n;
-        console.log(this.subtotal);
-        
+        this.subtotal;
       });
     });
 
@@ -52,9 +52,13 @@ export class CarritoComponent implements OnInit, OnDestroy {
   }
 
   realizar() {
-    this.mtv.redirectQuery(this.router, '/dashboard/compra', {
-      list: true,
-    });
+    this.isLoading = true;
+    this.mtv.setLocalS();
+    setTimeout(() => {
+      this.mtv.redirectQuery(this.router, '/dashboard/compra', {
+        list: true,
+      });
+    }, 2000);
   }
 
   eliminar(id: string) {
@@ -69,6 +73,6 @@ export class CarritoComponent implements OnInit, OnDestroy {
   }
 
   test() {
-    console.log('Llegamos aqui');
+    ('Llegamos aqui');
   }
 }

@@ -1,8 +1,9 @@
 <p-toast></p-toast>
 <div class="grid px-5">
   <div class="col-12">
-    <h1>Tu Carrito <i class="pi pi-shopping-cart
-      ml-2" style="font-size: 2.5rem"></i>
+    <h1>
+      Tu Carrito
+      <i class="pi pi-shopping-cart ml-2" style="font-size: 2.5rem"></i>
     </h1>
     <div>
       <h3 *ngIf="articulos.length > 0">
@@ -26,12 +27,22 @@
         [articulos]="articulos"
         (_eliminar)="eliminar($event)"
         [delete]="true"
-        
       ></app-lista-articulos>
     </div>
 
     <div class="col-12 flex align-items-center justify-content-end">
-      <button pButton label="Realizar Compra" (click)="realizar()"></button>
+      <button
+        class="p-button-warning p-button-sm p-button-outlined"
+        pButton
+        [label]="isLoading ? '' : 'Realizar Compra'"
+        (click)="realizar()"
+      >
+        <i
+          *ngIf="isLoading"
+          class="pi pi-spin pi-spinner"
+          style="font-size: 2rem"
+        ></i>
+      </button>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ITarjeta } from 'src/app/interfaces/tarjeta';
 import { IDireccion } from 'src/app/interfaces/direccion';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ICarrito } from 'src/app/interfaces/carrito';
 import { ProductosService } from 'src/app/services/productos.service';
 import { CarritoService } from 'src/app/services/carrito.service';
@@ -13,7 +13,9 @@ import {
   MessageService,
 } from 'primeng/api';
 import { ComprasService } from 'src/app/services/compras.service';
-import { ICompras } from 'src/app/interfaces/compras';
+import { ICompraItem, ICompras } from 'src/app/interfaces/compras';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MetodosVariosService } from 'src/app/utils/metodos-varios.service';
 
 @Component({
   selector: 'app-ventana-compra',
@@ -27,9 +29,6 @@ export class VentanaCompraComponent {
   tarjetas!: ITarjeta[];
   direcciones!: IDireccion[];
 
-  selectTarjeta!: ITarjeta;
-  selectDireccion!: IDireccion;
-
   cantidad: number = 0;
   subtotal: number = 0;
   metodo: string = '';
@@ -38,20 +37,25 @@ export class VentanaCompraComponent {
   position!: string;
 
   isCarrito: boolean = false;
-  idArticulo: string = '';
+  isLoading: boolean = false;
 
-  idTarjeta: string = '';
-  idDireccion: string = '';
+  idArticulo: string = '';
+  idCarrito!: string;
+
+  form!: FormGroup;
 
   constructor(
+    private mtv: MetodosVariosService,
     private tarjetaSvc: TarjetaService,
     private direccionSvc: DireccionService,
     private carritoSvc: CarritoService,
     private compraSvc: ComprasService,
     private route: ActivatedRoute,
+    private router: Router,
     private prdSvc: ProductosService,
     private confirm: ConfirmationService,
-    private message: MessageService
+    private message: MessageService,
+    private fb: FormBuilder
   ) {
     this.route.queryParams.subscribe((res: any) => {
       if (res.producto) {
@@ -70,6 +74,9 @@ export class VentanaCompraComponent {
         this.isCarrito = true;
         this.carritoSvc.getCarrito().subscribe((res) => {
           this.articulos = res;
+          
+          this.idCarrito = res[0]._id;
+          
           this.articulos.forEach((art) => {
             let n = art.articulo.precio * art.cantidad;
 
@@ -85,12 +92,22 @@ export class VentanaCompraComponent {
 
     this.direccionSvc.getDirecciones().subscribe((res) => {
       this.direcciones = res as IDireccion[];
-      console.log(this.direcciones);
+    });
+
+    this.form = this.fb.group({
+      tarjeta: [null],
+      direccion: [null, Validators.required],
     });
   }
 
   checkTienda() {
     this.confirmPosition('bottom');
+  }
+
+  getDataForm(control: string) {
+    const ctrl = this.form.get(control);
+
+    return ctrl?.value;
   }
 
   confirmPosition(position: string) {
@@ -103,7 +120,64 @@ export class VentanaCompraComponent {
       acceptLabel: 'Confimar',
       rejectButtonStyleClass: 'p-button-danger',
       rejectLabel: 'Cancelar',
-      accept: this.finalizarCompra,
+      accept: () => {
+        const { tarjeta, direccion } = this.form.value;
+        let msg = '';
+        if (!this.isCarrito) {
+          let compras: ICompras = {
+            compras: [
+              {
+                cantidad: this.cantidad,
+                articulo: this.idArticulo,
+                iddireccion: direccion._id,
+                idtarjeta: tarjeta !== null ? tarjeta._id : null,
+                estatus: false,
+              },
+            ],
+          };
+
+          this.compraSvc.comprar(compras).subscribe((res) => {
+            msg = res.toUpperCase();
+            this.message.add({
+              severity: 'info',
+              summary: 'Compra',
+              detail: msg,
+            });
+          });
+        } else {
+          let idsArticulo: ICompraItem[] = [];
+
+          this.articulos.forEach((art) => {
+            idsArticulo.push({
+              cantidad: art.cantidad,
+              articulo: art.articulo._id!,
+              iddireccion: direccion._id,
+              idtarjeta: tarjeta !== null ? tarjeta._id : null,
+              estatus: false,
+            });
+          });
+
+          let compras: ICompras = {
+            compras: idsArticulo,
+            idcarrito: this.idCarrito
+          };
+
+          this.compraSvc.comprar(compras).subscribe((res) => {
+            msg = res.toUpperCase();
+            this.message.add({
+              severity: 'info',
+              summary: 'Compra',
+              detail: msg,
+            });
+          });
+        }
+
+        this.isLoading = true;
+        setTimeout(() => {
+          this.mtv.redirect(this.router, '/dashboard/compras');
+          this.mtv.deleteLocalS();
+        }, 2000);
+      },
 
       reject: (type: any) => {
         switch (type) {
@@ -134,52 +208,12 @@ export class VentanaCompraComponent {
   isvalid(): boolean {
     if (
       this.metodo !== '' &&
-      (this.selectTarjeta !== undefined || this.tienda !== '') &&
-      this.selectDireccion !== undefined
+      (this.getDataForm('tarjeta') !== null || this.tienda !== '') &&
+      this.getDataForm('direccion') !== null 
     ) {
       return true;
     }
 
     return false;
-  }
-
-  setIdT() {
-    console.log(this.selectTarjeta._id);
-
-    this.idTarjeta = this.selectTarjeta._id || '';
-  }
-
-  setIdD(id: string) {
-    this.idDireccion = id;
-
-    console.log(this.idDireccion);
-  }
-
-  finalizarCompra() {
-    console.log(this.idTarjeta, this.idDireccion);
-
-    let msg = '';
-    if (!this.isCarrito) {
-      // const compras: ICompras = {
-      //   compras: [
-      //     {
-      //       cantidad: this.cantidad,
-      //       articulo: this.idArticulo,
-      //     },
-      //   ],
-      //   // direccion: this.,
-      // };
-      // // if(this.metodo === 'tg'){
-      // //   compras.compras[0].
-      // // }
-      // this.compraSvc.comprar(compras).subscribe((res) => {
-      //   msg = res.toUpperCase();
-      //   this.message.add({
-      //     severity: 'info',
-      //     summary: 'Compra',
-      //     detail: msg,
-      //   });
-      // });
-    }
   }
 }

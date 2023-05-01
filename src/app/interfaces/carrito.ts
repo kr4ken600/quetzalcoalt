@@ -1,7 +1,7 @@
 import { IProducto } from './producto';
 
 export interface ICarrito {
-  id?: string;
+  _id?: string;
   articulo: IProducto;
   cantidad: number;
 }

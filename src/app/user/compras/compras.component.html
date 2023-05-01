@@ -4,7 +4,7 @@
       Tus Compras
       <i class="pi pi-shopping-cart ml-2" style="font-size: 2.5rem"></i>
     </h1>
-    <hr>
+    <hr />
   </div>
   <div
     *ngIf="productos.length === 0"
@@ -43,15 +43,24 @@
               <td>
                 <p
                   class="link"
-                  routerLink
                   (click)="redirect(articulo.articulo._id)"
                 >
                   {{ articulo.articulo.marca }}
                 </p>
               </td>
-              <td class="text-center"> {{ articulo.fecha_compra | fecha}} </td>
-              <td class="text-center">Sin entregar</td>
-              <td class="text-center link" >Codigo de compra</td>
+              <td class="text-center">{{ articulo.fecha_compra | fecha }}</td>
+              <td
+                class="text-center {{
+                  articulo.estatus ? 'text-status' : 'text-status-proces'
+                }}"
+              >
+                {{ articulo.estatus | estadoCompra }}
+              </td>
+              <td class="text-center">
+                <p class="link" (click)="detalle(articulo._id)">
+                  Codigo de compra
+                </p>
+              </td>
               <td>{{ articulo.articulo.precio | currency : "MXN" }}</td>
               <td>
                 <p class="text-center" style="width: 100px">

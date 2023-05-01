@@ -1,5 +1,10 @@
 <p-toast></p-toast>
-<p-confirmDialog [style]="{ width: '50vw' }" key="positionDialog" [position]="position" rejectButtonStyleClass="p-button-outlined"></p-confirmDialog>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  key="positionDialog"
+  [position]="position"
+  rejectButtonStyleClass="p-button-outlined"
+></p-confirmDialog>
 <div class="grid">
   <div class="col-6">
     <h2>Metodo de Pago y Direccion</h2>
@@ -74,7 +79,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 flex align-items-center justify-content-center">
+                <div
+                  class="col-12 flex align-items-center justify-content-center"
+                >
                   <p-button
                     label="Descargar recibo"
                     [disabled]="tienda === ''"
@@ -84,29 +91,33 @@
               </div>
             </div>
             <!-- Tarjeta Guardada -->
-            <div *ngIf="mostrarOptionPago('tg')">
+            <div *ngIf="mostrarOptionPago('tg')" [formGroup]="form">
               <p-dropdown
                 [options]="tarjetas"
-                [(ngModel)]="selectTarjeta"
+                formControlName="tarjeta"
                 placeholder="Seleccionar tarjeta"
                 [editable]="false"
                 optionLabel="nombre"
-                (ngModelChange)="setIdT()"
               ></p-dropdown>
               <div
-                *ngIf="selectTarjeta !== undefined && mostrarOptionPago('tg')"
+                *ngIf="
+                  getDataForm('tarjeta') !== null && mostrarOptionPago('tg')
+                "
                 class="mt-3"
               >
-                <p-card [header]="selectTarjeta.nombre" subheader="Tarjeta">
+                <p-card
+                  [header]="getDataForm('tarjeta').nombre"
+                  subheader="Tarjeta"
+                >
                   <p>
                     Terminacion:
                     <small>{{
-                      selectTarjeta.numeroT | numTarjeta : "*"
+                      getDataForm("tarjeta").numeroT | numTarjeta : "*"
                     }}</small>
                   </p>
                   <p>
                     Fecha de vencimiento:
-                    <small>{{ selectTarjeta.fecha }}</small>
+                    <small>{{ getDataForm("tarjeta").fecha }}</small>
                   </p>
                 </p-card>
               </div>
@@ -120,33 +131,32 @@
           <div class="col-12">
             <label>Ubicacion <i class="pi pi-map ml-2"></i> </label>
           </div>
-          <div class="col-12">
+          <div class="col-12" [formGroup]="form">
             <p-dropdown
               [options]="direcciones"
-              [(ngModel)]="selectDireccion"
+              formControlName="direccion"
               placeholder="Seleccionar direccion"
               [editable]="false"
               optionLabel="nombre"
-              (onChange)="setIdD($event.value)"
             ></p-dropdown>
           </div>
           <div class="col-12">
-            <div class="mt-3" *ngIf="selectDireccion !== undefined">
+            <div class="mt-3" *ngIf="getDataForm('direccion') !== null">
               <p-card
-                [header]="selectDireccion.nombre"
+                [header]="getDataForm('direccion').nombre"
                 subheader="Direccion de envio"
               >
                 <p>
                   Direccion:
-                  <small>{{ selectDireccion.direccion }}</small>
+                  <small>{{ getDataForm("direccion").direccion }}</small>
                 </p>
                 <p>
                   Codigo Postal:
-                  <small>{{ selectDireccion.codigo }}</small>
+                  <small>{{ getDataForm("direccion").codigo }}</small>
                 </p>
                 <p>
                   Numero de telefono:
-                  <small>{{ selectDireccion.numero }}</small>
+                  <small>{{ getDataForm("direccion").numero }}</small>
                 </p>
               </p-card>
             </div>
@@ -166,11 +176,13 @@
 
     <div class="flex flex-row-reverse flex-wrap">
       <p-button
-        label="Finalizar Compra"
+        [label]="isLoading ? '' : 'Finalizar Compra'"
         styleClass="p-button-outlined p-button-danger p-button-lg mt-3"
-        [disabled]="!isvalid()"
+        [disabled]="!isvalid() || isLoading"
         (onClick)="checkTienda()"
-      ></p-button>
+      >
+        <i *ngIf="isLoading" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+      </p-button>
     </div>
   </div>
 </div>

@@ -26,4 +26,13 @@ export class MetodosVariosService {
       queryParams: query
     });
   }
+
+
+  setLocalS(){
+    localStorage.setItem('idcompra', 'jy6GtNrbk6');
+  }
+
+  deleteLocalS(){
+    localStorage.removeItem('idcompra');
+  }
 }

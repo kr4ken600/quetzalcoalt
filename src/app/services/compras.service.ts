@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
 import { ICompras } from '../interfaces/compras';
 
 interface IResponse {
@@ -32,6 +32,24 @@ export class ComprasService {
       .get(`${this.urlBase}/shop`, {
         headers: this.headers,
       })
-      .pipe(map((res: any) => res.compras[0].productos));
+      .pipe(map((res: any) => res.compras[0].compralist));
   }
+
+  getDetalle(id: string) {
+    return this.http
+      .get(`${this.urlBase}/shop/${id}`, {
+        headers: this.headers,
+      })
+      .pipe(map((res: any) => res.articulo));
+  }
+
+
+  validCompra(){
+
+    const idCompra = localStorage.getItem('idcompra');
+
+    return idCompra === null ? of(false) : of(true);
+
+  }
+
 }
