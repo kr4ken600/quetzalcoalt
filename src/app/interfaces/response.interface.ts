@@ -2,6 +2,7 @@ export interface IResponseUsuario {
   ok: boolean;
   uid?: string;
   username?: string;
+  role: string;
   token?: string;
   msg?: string;
   errors?: Errors;

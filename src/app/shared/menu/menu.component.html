@@ -1,13 +1,12 @@
 <p-menubar [model]="itemMenu" class="block mb-3">
   <ng-template pTemplate="start">
     <img
-      src="https://primefaces.org/cdn/primeng/images/primeng.svg"
+      src="assets/icono.svg"
       height="40"
       class="mr-2"
     />
   </ng-template>
   <ng-template pTemplate="end">
-    <input type="text" pInputText placeholder="Buscar" />
     <app-btn-auth *ngIf="username"></app-btn-auth>
     <p-menu #menu [model]="itemCuenta" [popup]="true"></p-menu>
     <button pButton *ngIf="!username" (click)="menu.toggle($event)" label="Cuenta" class="ml-3 p-button-outlined p-button-secondary" icon="pi pi-fw pi-user"></button>

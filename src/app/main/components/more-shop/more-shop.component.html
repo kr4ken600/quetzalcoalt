@@ -1,0 +1,35 @@
+<p-carousel
+  [value]="products"
+  [numVisible]="3"
+  [numScroll]="3"
+  [circular]="false"
+  [responsiveOptions]="responsiveOptions"
+>
+  <ng-template let-produc pTemplate="item">
+    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+      <div class="mb-3">
+        <img
+          src="assets/productos/{{ produc.productos.categoria }}/{{
+            produc.productos.img
+          }}.png"
+          [alt]="produc.productos.name"
+          class="w-6 shadow-2"
+        />
+      </div>
+      <div>
+        <h5 class="mb-1 link" (click)="redirect(produc.productos._id)">
+          {{ produc.productos.marca }}
+        </h5>
+        <p class="mt-0 mb-3">{{ "$" + produc.productos.precio }}</p>
+        <div class="car-buttons mt-5">
+          <p-button
+            type="button"
+            (onClick)="redirect(produc.productos._id)"
+            styleClass="p-button-secondary p-button-outlined p-button-rounded"
+            icon="pi pi-search"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

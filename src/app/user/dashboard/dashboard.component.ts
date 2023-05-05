@@ -10,10 +10,12 @@ import { AuthService } from 'src/app/main/auth/service/auth.service';
 })
 export class DashboardComponent {
   username!: string;
+  role!: string;
   items!: MenuItem[];
 
   constructor(private authSvc: AuthService, private router: Router) {
     this.username = this.authSvc.usuario.username;
+    this.role = this.authSvc.usuario.role;
 
     this.items = [
       {
@@ -52,6 +54,15 @@ export class DashboardComponent {
         },
       },
     ];
+
+    if(this.authSvc.usuario.role === 'admin'){
+      this.items.unshift({
+        label: 'Funciones de Administrador',
+        icon: 'pi pi-fw pi-lock',
+        routerLink: '/dashboard/admin',
+        routerLinkActiveOptions: { exact: true },
+      })
+    }
   }
 
   logOut() {

@@ -16,70 +16,14 @@ import { ProductosService } from 'src/app/services/productos.service';
   ],
 })
 export class PrincipalComponent implements OnInit {
-  productosT: IProducto[] = [
-    {
-      categoria: 'cubiertas',
-      descripcion: 'Cubierta Delantera De Faro P/ Bajaj Pulsar NS200',
-      img: 'c1',
-      marca: 'Bajaj',
-      modelo: 'Pulsar ns 200',
-      precio: 210,
-      stock: 10,
-      _id: '643f5533f72cb7316a662161',
-    },
-    {
-      categoria: 'cubiertas',
-      descripcion: 'Cubierta Delantera De Faro P/ Bajaj Pulsar NS200',
-      img: 'c1',
-      marca: 'Bajaj',
-      modelo: 'Pulsar ns 200',
-      precio: 210,
-      stock: 10,
-      _id: '643f5533f72cb7316a662161',
-    },
-    {
-      categoria: 'cubiertas',
-      descripcion: 'Cubierta Delantera De Faro P/ Bajaj Pulsar NS200',
-      img: 'c1',
-      marca: 'Bajaj',
-      modelo: 'Pulsar ns 200',
-      precio: 210,
-      stock: 10,
-      _id: '643f5533f72cb7316a662161',
-    },
-    {
-      categoria: 'cubiertas',
-      descripcion: 'Cubierta Delantera De Faro P/ Bajaj Pulsar NS200',
-      img: 'c1',
-      marca: 'Bajaj',
-      modelo: 'Pulsar ns 200',
-      precio: 210,
-      stock: 10,
-      _id: '643f5533f72cb7316a662161',
-    },
-    {
-      categoria: 'cubiertas',
-      descripcion: 'Cubierta Delantera De Faro P/ Bajaj Pulsar NS200',
-      img: 'c1',
-      marca: 'Bajaj',
-      modelo: 'Pulsar ns 200',
-      precio: 210,
-      stock: 10,
-      _id: '643f5533f72cb7316a662161',
-    },
-    {
-      categoria: 'cubiertas',
-      descripcion: 'Cubierta Delantera De Faro P/ Bajaj Pulsar NS200',
-      img: 'c1',
-      marca: 'Bajaj',
-      modelo: 'Pulsar ns 200',
-      precio: 210,
-      stock: 10,
-      _id: '643f5533f72cb7316a662161',
-    },
-  ];
   responsiveOptions!: any[];
-  productos: IProducto[] = [];
+  consumibles: IProducto[] = [];
+  accesorios: IProducto[] = [];
+  cascos: IProducto[] = [];
+  llantas: IProducto[] = [];
+  protecciones: IProducto[] = [];
+
+  isLoading: boolean = true;
 
   imgCarousel: string[] = [
     'assets/presentacion/carrucel.png',
@@ -91,9 +35,16 @@ export class PrincipalComponent implements OnInit {
   constructor(private prodSvc: ProductosService) {}
   ngOnInit(): void {
     this.prodSvc.getVendido().subscribe((res) => {
-      res.forEach((element: IProducto[]) => {
-        this.productos.push(element[0]);
-      });
+      this.consumibles = res.filter((r: any) => r.principal === 'consumibles');
+      this.accesorios = res.filter((r: any) => r.principal === 'accesorios');
+      this.cascos = res.filter((r: any) => r.principal === 'cascos');
+      this.llantas = res.filter((r: any) => r.principal === 'llantas');
+      this.protecciones = res.filter(
+        (r: any) => r.principal === 'protecciones'
+      );
+
+      this.isLoading = false;
+      
     });
 
     this.responsiveOptions = [

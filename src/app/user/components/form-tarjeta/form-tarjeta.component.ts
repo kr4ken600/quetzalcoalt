@@ -23,7 +23,7 @@ export class FormTarjetaComponent {
           Validators.maxLength(19),
         ],
       ],
-      nombre: ['Kr4ken Ortiz', Validators.required],
+      nombre: ['', Validators.required],
       fecha: ['', [Validators.required]],
       codigoS: [
         '',

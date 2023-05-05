@@ -15,3 +15,23 @@ html, body{
 .text-warn{
   color: #cc5252;
 }
+
+.text-status{
+  color: #20ef6c;
+}
+
+.text-status-proces{
+  color: #007bff;
+}
+
+.link {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.5s;
+}
+
+.link:hover {
+  color: #8fa0e2;
+}

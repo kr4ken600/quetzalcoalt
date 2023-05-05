@@ -56,11 +56,13 @@ export class ProductoComponent implements OnInit, OnDestroy {
       .subscribe((res: ICategoria[]) => {
         this.subItems = [];
         res.forEach((cat: ICategoria) => {
-          this.subItems.push({
-            label: cat.nombre,
-            icon: 'pi pi-fw pi-tags',
-            routerLink: ['/index/tienda', cat.principal, cat.nombre],
-          });
+          cat.subcategorias.forEach(sub => {
+            this.subItems.push({
+              label: sub.nombre.toLocaleUpperCase(),
+              icon: 'pi pi-fw pi-tags',
+              routerLink: ['/index/tienda', cat.principal, sub.nombre],
+            });
+          })
         });
 
         this.items = [

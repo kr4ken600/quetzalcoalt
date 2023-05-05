@@ -20,18 +20,35 @@
     </div>
   </div>
 
-  <div *ngFor="let produc of productos" class="col-12 md:col-6 lg:col-4 px-5">
-    <p-card
-      [header]="produc.marca"
-      subheader="{{ produc.precio | currency : 'MXN' }}"
-    >
-      <ng-template pTemplate="header">
-        <img
-          alt="Card"
-          src="assets/productos/{{ produc.categoria }}/{{ produc.img }}.png"
-        />
-      </ng-template>
-      <p>{{ produc.descripcion }}</p>
-    </p-card>
+  <div class="col-12" *ngIf="isLoading">
+    <app-shadow-shop></app-shadow-shop>
+  </div>
+
+  <div class="grid" *ngIf="!isLoading">
+    <div class="col-12">
+      <h3>Lo mas Vendido en Consumibles</h3>
+      <hr>
+      <app-more-shop [products]="consumibles.length > 0 ? consumibles : []"></app-more-shop>
+    </div>
+    <div class="col-12" *ngIf="accesorios.length > 0">
+      <h3>Lo mas Vendido en Accesorios</h3>
+      <hr>
+      <app-more-shop [products]="accesorios.length > 0 ? accesorios : []"></app-more-shop>
+    </div>
+    <div class="col-12" *ngIf="cascos.length > 0">
+      <h3>Lo mas Vendido en Cascos</h3>
+      <hr>
+      <app-more-shop [products]="cascos.length > 0 ? cascos : []"></app-more-shop>
+    </div>
+    <div class="col-12" *ngIf="llantas.length > 0">
+      <h3>Lo mas Vendido en Llantas</h3>
+      <hr>
+      <app-more-shop [products]="llantas.length > 0 ? llantas : []"></app-more-shop>
+    </div>
+    <div class="col-12" *ngIf="protecciones.length > 0">
+      <h3>Lo mas Vendido en Protecciones</h3>
+      <hr>
+      <app-more-shop [products]="protecciones.length > 0 ? protecciones : []"></app-more-shop>
+    </div>
   </div>
 </div>

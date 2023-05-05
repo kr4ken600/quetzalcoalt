@@ -12,6 +12,8 @@ import { DescripcionPipe } from './pipes/descripcion.pipe';
 import { ProductoComponent } from './productos/pages/producto/producto.component';
 import { UnicoComponent } from './productos/pages/unico/unico.component';
 import { FormsModule } from '@angular/forms';
+import { MoreShopComponent } from './components/more-shop/more-shop.component';
+import { ShadowShopComponent } from './components/shadow-shop/shadow-shop.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     DescripcionPipe,
     ProductoComponent,
-    UnicoComponent
+    UnicoComponent,
+    MoreShopComponent,
+    ShadowShopComponent
   ],
   imports: [
     CommonModule,

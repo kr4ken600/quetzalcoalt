@@ -3,10 +3,11 @@ import { ITarjeta } from "./tarjeta";
 
 export interface ICompras {
   compras: ICompraItem[];
-  idcarrito?: string
+  idcarrito?: string,
 }
 
 export interface ICompraItem {
+  identificador: string
   cantidad: number;
   articulo: string;
   iddireccion: string;
@@ -41,4 +42,5 @@ export interface IProductoDetalle {
   fecha_compra: Date;
   iddireccion: IDireccion;
   idtarjeta: null | ITarjeta;
+  iduser?: string
 }

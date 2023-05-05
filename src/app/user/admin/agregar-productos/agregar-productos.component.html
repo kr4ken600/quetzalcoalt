@@ -1,0 +1,108 @@
+<p-toast></p-toast>
+<div class="my-5 px-5">
+  <p-panel header="Datos del Producto">
+    <form (ngSubmit)="saveProd()" [formGroup]="form">
+      <div class="grid">
+        <div class="col-12 md:col-6">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-box"></i>
+            </span>
+            <input pInputText formControlName="marca" placeholder="Producto" />
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-box"></i>
+            </span>
+            <input pInputText formControlName="modelo" placeholder="Modelo" />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-box"></i>
+            </span>
+            <textarea
+              name="dec"
+              rows="5"
+              cols="30"
+              pInputTextarea
+              placeholder="Descripcion"
+              formControlName="descripcion"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-box"></i>
+            </span>
+            <input pInputText formControlName="precio" placeholder="Precio" />
+          </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-box"></i>
+            </span>
+            <input pInputText formControlName="stock" placeholder="Stock" />
+          </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-4">
+          <p-dropdown
+            [options]="categorias"
+            formControlName="categoria"
+            placeholder="Categorias"
+            [group]="true"
+          >
+            <ng-template let-group pTemplate="group">
+              <div class="flex align-items-center">
+                <span>{{ group.label }}</span>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+        <div class="col-12">
+          <p-fileUpload
+            name="demo[]"
+            chooseLabel="Subir Imagen"
+            uploadLabel="Cargar"
+            cancelLabel="Cancelar"
+            url="https://www.primefaces.org/cdn/api/upload.php"
+            (onUpload)="onUpload($event)"
+            accept="image/*"
+            [maxFileSize]="1000000"
+          >
+            <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length > 0">
+                <li>
+                  {{ uploadedFiles[0].name }}
+                </li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+        </div>
+        <div
+          class="col-12 flex flex align-items-center justify-content-center mt-3"
+        >
+          <p-button
+            type="submit"
+            styleClass="p-button-outlined p-button-secondary "
+            label="Guardar"
+            [icon]="isLoading ? '' : 'pi pi-fw pi-save'"
+            [disabled]="!isValid()"
+          >
+            <i
+              *ngIf="isLoading"
+              class="pi pi-spin pi-spinner mr-3"
+              style="font-size: 2rem"
+              slot="start"
+            ></i>
+          </p-button>
+        </div>
+      </div>
+    </form>
+  </p-panel>
+</div>

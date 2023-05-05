@@ -35,4 +35,13 @@ export class MetodosVariosService {
   deleteLocalS(){
     localStorage.removeItem('idcompra');
   }
+
+  identifdicador() {
+    const banco = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let id = "";
+    for (let i = 0; i < 10; i++) {
+        id += banco.charAt(Math.floor(Math.random() * banco.length));
+    }
+    return id;
+};
 }

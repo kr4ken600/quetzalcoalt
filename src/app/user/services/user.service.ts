@@ -8,7 +8,21 @@ import { ITarjeta } from 'src/app/interfaces/tarjeta';
   providedIn: 'root',
 })
 export class UserService {
-  constructor() {
-    
+  private rutaBase: string = 'http://localhost:4001/api/auth';
+
+  constructor(private http: HttpClient) {}
+
+  deleteUser() {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const headers = new HttpHeaders().set('x-token', token ?? '');
+    return this.http
+      .delete(`${this.rutaBase}/user`, { headers })
+      .pipe(map((res: any) => res.msg));
+  }
+
+  logOut() {
+    localStorage.clear();
+    sessionStorage.clear();
   }
 }

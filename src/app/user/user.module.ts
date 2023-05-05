@@ -15,6 +15,12 @@ import { VentanaCompraComponent } from './ventana-compra/ventana-compra.componen
 import { ListaArticulosComponent } from './components/lista-articulos/lista-articulos.component';
 import { PipesModule } from './pipes/pipes.module';
 import { DetalleCompraComponent } from './detalle-compra/detalle-compra.component';
+import { AgregarProductosComponent } from './admin/agregar-productos/agregar-productos.component';
+import { DashboardAdminComponent } from './admin/dashboard/dashboard.component';
+import { EditarProductosComponent } from './admin/editar-productos/editar-productos.component';
+import { MostrarProductosComponent } from './admin/mostrar-productos/mostrar-productos.component';
+import { MostrarPedidosComponent } from './admin/mostrar-pedidos/mostrar-pedidos.component';
+import { ShowArticulosComponent } from './components/show-articulos/show-articulos.component';
 
 
 @NgModule({
@@ -29,6 +35,12 @@ import { DetalleCompraComponent } from './detalle-compra/detalle-compra.componen
     VentanaCompraComponent,
     ListaArticulosComponent,
     DetalleCompraComponent,
+    DashboardAdminComponent,
+    AgregarProductosComponent,
+    EditarProductosComponent,
+    MostrarProductosComponent,
+    MostrarPedidosComponent,
+    ShowArticulosComponent,
   ],
   imports: [
     CommonModule,

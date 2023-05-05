@@ -20,6 +20,11 @@ export class MenuComponent implements OnInit {
   categorias: ICategoria[] = [];
 
   consumibles: MenuItem[] = [];
+  accesorios: MenuItem[] = [];
+  cascos: MenuItem[] = [];
+  llantas: MenuItem[] = [];
+  protecciones: MenuItem[] = [];
+  refacciones: MenuItem[] = [];
 
   get username() {
     return this.checkSvc.token.length === 0 ? true : false;
@@ -36,12 +41,75 @@ export class MenuComponent implements OnInit {
       let cat1 = this.categorias.filter(
         (val) => val.principal === 'consumibles'
       );
+      let cat2 = this.categorias.filter(
+        (val) => val.principal === 'accesorios'
+      );
+      let cat3 = this.categorias.filter((val) => val.principal === 'cascos');
+      let cat4 = this.categorias.filter((val) => val.principal === 'llantas');
+      let cat5 = this.categorias.filter(
+        (val) => val.principal === 'protecciones'
+      );
+      let cat6 = this.categorias.filter(
+        (val) => val.principal === 'refacciones'
+      );
       cat1.forEach((val) => {
-        this.consumibles.push({
-          label: val.nombre,
-          icon: 'pi pi-fw pi-tags',
-          routerLink: ['/index/tienda', val.principal, val.nombre]
-        })
+        val.subcategorias.forEach((sub) => {
+          this.consumibles.push({
+            label: sub.nombre.toLocaleUpperCase(),
+            icon: 'pi pi-fw pi-tags',
+            routerLink: ['/index/tienda', val.principal, sub.nombre],
+          });
+        });
+      });
+
+      cat2.forEach((val) => {
+        val.subcategorias.forEach((sub) => {
+          this.accesorios.push({
+            label: sub.nombre.toLocaleUpperCase(),
+            icon: 'pi pi-fw pi-tags',
+            routerLink: ['/index/tienda', val.principal, sub.nombre],
+          });
+        });
+      });
+
+      cat3.forEach((val) => {
+        val.subcategorias.forEach((sub) => {
+          this.cascos.push({
+            label: sub.nombre.toLocaleUpperCase(),
+            icon: 'pi pi-fw pi-tags',
+            routerLink: ['/index/tienda', val.principal, sub.nombre],
+          });
+        });
+      });
+
+      cat4.forEach((val) => {
+        val.subcategorias.forEach((sub) => {
+          this.llantas.push({
+            label: sub.nombre.toLocaleUpperCase(),
+            icon: 'pi pi-fw pi-tags',
+            routerLink: ['/index/tienda', val.principal, sub.nombre],
+          });
+        });
+      });
+
+      cat5.forEach((val) => {
+        val.subcategorias.forEach((sub) => {
+          this.protecciones.push({
+            label: sub.nombre.toLocaleUpperCase(),
+            icon: 'pi pi-fw pi-tags',
+            routerLink: ['/index/tienda', val.principal, sub.nombre],
+          });
+        });
+      });
+
+      cat6.forEach((val) => {
+        val.subcategorias.forEach((sub) => {
+          this.refacciones.push({
+            label: sub.nombre.toLocaleUpperCase(),
+            icon: 'pi pi-fw pi-tags',
+            routerLink: ['/index/tienda', val.principal, sub.nombre],
+          });
+        });
       });
     });
   }
@@ -67,20 +135,29 @@ export class MenuComponent implements OnInit {
         items: this.consumibles,
       },
       {
-        label: 'Refacciones',
+        label: 'Protecciones',
         icon: 'pi pi-fw pi-tags',
+        items: this.protecciones,
       },
       {
         label: 'Cascos',
         icon: 'pi pi-fw pi-tags',
+        items: this.cascos,
       },
       {
-        label: 'Accesirios',
+        label: 'Accesorios',
         icon: 'pi pi-fw pi-tags',
+        items: this.accesorios,
       },
       {
         label: 'Llantas',
         icon: 'pi pi-fw pi-tags',
+        items: this.llantas,
+      },
+      {
+        label: 'Refacciones',
+        icon: 'pi pi-fw pi-tags',
+        items: this.refacciones,
       },
     ];
 

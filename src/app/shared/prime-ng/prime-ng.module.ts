@@ -11,6 +11,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MessagesModule } from 'primeng/messages';
 import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+import { PanelModule } from 'primeng/panel';
+import { FileUploadModule } from 'primeng/fileupload';
 import { AccordionModule } from 'primeng/accordion';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputMaskModule } from 'primeng/inputmask';
@@ -21,11 +23,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   exports: [
     ButtonModule,
     MenubarModule,
+    DataViewModule,
     InputTextModule,
     MegaMenuModule,
     CarouselModule,
@@ -45,7 +51,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     ConfirmDialogModule,
     TableModule,
     DropdownModule,
-    RadioButtonModule
+    RadioButtonModule,
+    TabMenuModule,
+    InputTextareaModule,
+    FileUploadModule,
+    PanelModule
   ],
 })
 export class PrimeNgModule {}

@@ -17,17 +17,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  private setUser(uid: string, username: string) {
+  private setUser(uid: string, username: string, role: string) {
     this._usuario = {
       uid,
       username,
+      role: role,
     };
   }
 
   login(user: IUsuarioReq, check: boolean) {
     return this.http.post<IResponseUsuario>(`${this.rutaBase}`, user).pipe(
       tap((res) => {
-        this.setUser(res.uid!, res.username!)
+        this.setUser(res.uid!, res.username!, res.role);
         if (res.ok && check) {
           localStorage.setItem('token', res.token!);
         } else {
@@ -39,10 +40,10 @@ export class AuthService {
     );
   }
 
-  register(user: IUsuarioReq){
+  register(user: IUsuarioReq) {
     return this.http.post<IResponseUsuario>(`${this.rutaBase}/new`, user).pipe(
-      map(res => res.ok),
-      catchError(err => of(err.error.msg))
+      map((res) => res.ok),
+      catchError((err) => of(err.error.msg))
     );
   }
 
@@ -54,14 +55,14 @@ export class AuthService {
       .get<IResponseUsuario>(`${this.rutaBase}/renew`, { headers })
       .pipe(
         map((res) => {
-          this.setUser(res.uid!, res.username!)
+          this.setUser(res.uid!, res.username!, res.role);
           return res.ok;
         }),
         catchError((err) => of(false))
       );
   }
 
-  logOut(){
+  logOut() {
     localStorage.clear();
     sessionStorage.clear();
   }

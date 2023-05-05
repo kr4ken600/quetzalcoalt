@@ -1,6 +1,6 @@
 <div class="grid my-5 px-5">
   <div class="col-12">
-    <h1>Bienvenido {{ username }}</h1>
+    <h1>Bienvenido {{ username | titlecase }}</h1>
   </div>
   <div class="col-12 md:col-4 lg:col-4 xl:col-2">
     <p-tieredMenu [model]="items">

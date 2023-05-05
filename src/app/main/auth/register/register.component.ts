@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
       username: this.formRegister.get('username')?.value,
       email: this.formRegister.get('email')?.value,
       password: this.formRegister.get('password')?.value,
+      role: 'cliente'
     };
 
     this.auth.register(user).subscribe((res) => {

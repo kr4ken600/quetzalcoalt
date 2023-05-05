@@ -1,5 +1,11 @@
 export interface ICategoria {
-  _id:       string;
-  nombre:    string;
+  __v: number;
+  _id: string;
   principal: string;
- }
+  subcategorias: Subcategoria[];
+}
+
+export interface Subcategoria {
+  _id: string;
+  nombre: string;
+}

@@ -58,7 +58,7 @@
               </td>
               <td class="text-center">
                 <p class="link" (click)="detalle(articulo._id)">
-                  Codigo de compra
+                  {{ articulo.identificador | uppercase }}
                 </p>
               </td>
               <td>{{ articulo.articulo.precio | currency : "MXN" }}</td>

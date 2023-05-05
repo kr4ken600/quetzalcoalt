@@ -1,1 +1,41 @@
-<p>configuracion works!</p>
+<p-toast></p-toast>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  key="positionDialog"
+  [position]="position"
+  rejectButtonStyleClass="p-button-outlined"
+></p-confirmDialog>
+<div class="grid">
+  <div class="col-12">
+    <h1>
+      Configuraciones
+      <i class="pi pi-wrench ml-2" style="font-size: 2.5rem"></i>
+    </h1>
+    <hr />
+  </div>
+  <div class="col-12 mb-5">
+    <div class="card">
+      <p class="text-center">
+        Estamos trabajando para entregarte mas configuraciones, por el momento
+        solo puedes dar de baja tu cuenta.
+      </p>
+    </div>
+  </div>
+  <div class="col-12 flex flex-column mt-5">
+    <div class="flex align-items-center justify-content-center">
+      <p-button
+        (onClick)="eliminar()"
+        label="Eliminar Cuenta"
+        [icon]="isLoading ? '' : 'pi pi-times'"
+        styleClass="p-button-outlined p-button-danger p-button-lg"
+      >
+        <i
+          slot="start"
+          *ngIf="isLoading"
+          class="pi pi-spin pi-spinner mr-3"
+          style="font-size: 2rem"
+        ></i>
+      </p-button>
+    </div>
+  </div>
+</div>

@@ -127,6 +127,7 @@ export class VentanaCompraComponent {
           let compras: ICompras = {
             compras: [
               {
+                identificador: this.mtv.identifdicador(),
                 cantidad: this.cantidad,
                 articulo: this.idArticulo,
                 iddireccion: direccion._id,
@@ -149,6 +150,7 @@ export class VentanaCompraComponent {
 
           this.articulos.forEach((art) => {
             idsArticulo.push({
+              identificador: this.mtv.identifdicador(),
               cantidad: art.cantidad,
               articulo: art.articulo._id!,
               iddireccion: direccion._id,
