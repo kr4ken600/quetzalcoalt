@@ -84,3 +84,12 @@ npm install
 ```
 
 >En caso de que algo te de error y neta no sepas que pedo, me mandas mensaje xd
+
+***
+
+## Datos de Usuarios 🧑‍🦲
+
+| Usuario | Contraseña |
+|---------|------------|
+| test@test.com | pass123 |
+| admin@test.com | admin123! |
